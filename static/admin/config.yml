@@ -1,0 +1,66 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "static/images/uploads"
+public_folder: "/images/uploads"
+
+locale: fr
+
+collections:
+  - name: "posts"
+    label: "Articles"
+    folder: "content/posts"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: "Titre"
+        name: "title"
+        widget: "string"
+        hint: "Le titre principal de l'article"
+
+      - label: "Date de publication"
+        name: "date"
+        widget: "datetime"
+        format: "2006-01-02T15:04:05Z07:00"
+        date_format: "DD/MM/YYYY"
+        time_format: "HH:mm"
+
+      - label: "Description"
+        name: "description"
+        widget: "string"
+        hint: "Résumé court affiché dans les listes (1-2 phrases)"
+
+      - label: "Catégorie"
+        name: "categories"
+        widget: "select"
+        multiple: true
+        options:
+          - { label: "Structures", value: "Structures" }
+          - { label: "Fondations", value: "Fondations" }
+          - { label: "Matériaux", value: "Matériaux" }
+          - { label: "Normes & Réglementation", value: "Normes & Réglementation" }
+          - { label: "Chantier", value: "Chantier" }
+          - { label: "Innovation", value: "Innovation" }
+
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        hint: "Mots-clés séparés par virgule (ex: béton, fondations, sismique)"
+
+      - label: "Image à la une"
+        name: "featured_image"
+        widget: "image"
+        required: false
+        hint: "Photo ou illustration pour illustrer l'article"
+
+      - label: "Brouillon"
+        name: "draft"
+        widget: "boolean"
+        default: false
+        hint: "Si activé, l'article ne sera pas publié"
+
+      - label: "Contenu"
+        name: "body"
+        widget: "markdown"
+        hint: "Le corps de l'article. Utilisez le formatage Markdown."

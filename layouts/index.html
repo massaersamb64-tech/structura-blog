@@ -1,0 +1,63 @@
+{{ define "main" }}
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__inner">
+    <div class="hero__label">Génie Civil &amp; Construction</div>
+    <h1 class="hero__title">Le savoir du <em>bâtisseur</em></h1>
+    <p class="hero__tagline">Articles techniques sur le génie civil, les structures, les matériaux et les méthodes de construction.</p>
+  </div>
+</section>
+
+<!-- LATEST ARTICLES -->
+<section class="articles-section">
+  <div class="container">
+    <div class="section-label">Derniers articles</div>
+    <div class="articles-grid">
+      {{ range first 6 (where .Site.RegularPages "Type" "posts") }}
+        <article class="card">
+          {{ with .Params.categories }}
+            <div class="card__category">{{ index . 0 }}</div>
+          {{ end }}
+          <h2 class="card__title">
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
+          </h2>
+          {{ with .Description }}
+            <p class="card__excerpt">{{ . }}</p>
+          {{ else }}
+            <p class="card__excerpt">{{ .Summary | truncate 120 }}</p>
+          {{ end }}
+          <div class="card__meta">
+            <time class="card__date" datetime="{{ .Date.Format "2006-01-02" }}">
+              {{ .Date.Format "02 Jan 2006" }}
+            </time>
+            <a href="{{ .Permalink }}" class="card__link">
+              Lire →
+            </a>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+
+    {{ if gt (len (where .Site.RegularPages "Type" "posts")) 6 }}
+      <div style="text-align:center; margin-top: 3rem;">
+        <a href="/posts/" style="
+          font-family: var(--font-mono);
+          font-size: 0.7rem;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          color: var(--navy);
+          border: 1.5px solid var(--navy);
+          padding: 0.75rem 2rem;
+          display: inline-block;
+          transition: all 0.25s ease;
+        "
+        onmouseover="this.style.background='var(--navy)';this.style.color='white';"
+        onmouseout="this.style.background='transparent';this.style.color='var(--navy)';"
+        >Voir tous les articles</a>
+      </div>
+    {{ end }}
+  </div>
+</section>
+
+{{ end }}

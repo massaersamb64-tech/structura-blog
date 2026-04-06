@@ -1,0 +1,38 @@
+{{ define "main" }}
+
+<div class="list-header">
+  <div class="container">
+    <div class="section-label">{{ if .IsHome }}Accueil{{ else }}{{ .Title }}{{ end }}</div>
+    <h1>{{ if eq .Title "Posts" }}Tous les articles{{ else }}{{ .Title }}{{ end }}</h1>
+    {{ with .Description }}
+      <p style="color: var(--gray); margin-top: 1rem; font-size: 1.1rem;">{{ . }}</p>
+    {{ end }}
+  </div>
+</div>
+
+<div class="list-page">
+  <div class="container">
+    <div class="posts-list">
+      {{ range .Pages }}
+        <article class="post-row">
+          <time class="post-row__date" datetime="{{ .Date.Format "2006-01-02" }}">
+            {{ .Date.Format "02 Jan 2006" }}
+          </time>
+          <div class="post-row__content">
+            <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+            {{ with .Description }}
+              <p class="post-row__excerpt">{{ . }}</p>
+            {{ else }}
+              <p class="post-row__excerpt">{{ .Summary | truncate 140 }}</p>
+            {{ end }}
+          </div>
+          {{ with .Params.categories }}
+            <div class="post-row__category">{{ index . 0 }}</div>
+          {{ end }}
+        </article>
+      {{ end }}
+    </div>
+  </div>
+</div>
+
+{{ end }}
