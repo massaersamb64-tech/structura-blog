@@ -1,7 +1,6 @@
 baseURL = "https://structura.netlify.app/"
 languageCode = "fr-FR"
 title = "Structura"
-theme = ""
 
 [params]
   description = "Le savoir du bâtisseur — Articles sur le génie civil et la construction"
