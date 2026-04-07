@@ -14,7 +14,7 @@
   <div class="container">
     <div class="section-label">Derniers articles</div>
     <div class="articles-grid">
-      {{ range first 6 (where .Site.RegularPages "Type" "posts") }}
+      {{ range first 6 (where .Site.RegularPages "Section" "posts") }}
         <article class="card">
           {{ with .Params.categories }}
             <div class="card__category">{{ index . 0 }}</div>
@@ -39,7 +39,7 @@
       {{ end }}
     </div>
 
-    {{ if gt (len (where .Site.RegularPages "Type" "posts")) 6 }}
+    {{ if gt (len (where .Site.RegularPages "Section" "posts")) 6 }}
       <div style="text-align:center; margin-top: 3rem;">
         <a href="/posts/" style="
           font-family: var(--font-mono);
