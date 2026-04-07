@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: massaersamb64-tech/structura-blog
   branch: main
 
 media_folder: "static/images/uploads"
